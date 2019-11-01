@@ -1,4 +1,7 @@
 # scoped_model_example
+## TODO:
+- implement Delete Todo
+- implement update Todo
 
 A new Flutter project.
 
