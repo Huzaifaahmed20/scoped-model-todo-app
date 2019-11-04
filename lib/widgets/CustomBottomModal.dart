@@ -5,7 +5,7 @@ import '../models/TodoModel.dart';
 Future<void> openCustomBottomModal(BuildContext ctx) {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final todoRef = ScopedModel.of<TodoModel>(ctx);
+  final todoRef = ScopedModel.of<TodoModel>(ctx, rebuildOnChange: true);
 
   return showModalBottomSheet(
       context: ctx,

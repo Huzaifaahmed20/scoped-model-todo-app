@@ -7,7 +7,8 @@ import './CustomBottomModal.dart';
 class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final todos = ScopedModel.of<TodoModel>(context).todos;
+    final todoRef = ScopedModel.of<TodoModel>(context, rebuildOnChange: true);
+    final todos = todoRef.todos;
     return Scaffold(
         appBar: AppBar(
           title: Text('Scoped Model Todo'),
@@ -23,10 +24,32 @@ class CustomScaffold extends StatelessWidget {
             itemBuilder: (context, index) {
               final title = todos[index]['title'];
               final description = todos[index]['description'];
-              return Card(
-                child: ListTile(
-                  title: Text('$title'),
-                  subtitle: Text('$description'),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  child: ListTile(
+                    title: Text('$title'),
+                    subtitle: Text('$description'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.purple,
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.delete_forever,
+                            color: Colors.red,
+                          ),
+                          onPressed: () => todoRef.deleteTodo(index),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               );
             },

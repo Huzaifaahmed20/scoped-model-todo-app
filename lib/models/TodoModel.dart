@@ -13,4 +13,9 @@ class TodoModel extends Model {
     _todos.add({'title': title, 'description': description});
     notifyListeners();
   }
+
+  void deleteTodo(int index) {
+    _todos.removeAt(index);
+    notifyListeners();
+  }
 }
